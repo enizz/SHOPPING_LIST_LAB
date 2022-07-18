@@ -1,8 +1,8 @@
 ﻿decimal cartTotal = 0.00m;
 ConsoleKeyInfo key;
 var cartItems = new List<KeyValuePair<string, decimal>>();
-
 string input = "";
+
 Dictionary<string, decimal> menu = new Dictionary<string, decimal>();
 menu.Add("item1", 3.50m);
 menu.Add("item2", 0.99m);
@@ -39,7 +39,6 @@ void Order(string input2)
     Console.WriteLine("\nAdding " + input + " to your cart at $" + menu[input]);
     cartItems.Add(new KeyValuePair<string, decimal>(input, menu[input]));    
 }
-
 void DisplayMenu()
 {
     foreach (KeyValuePair<string, decimal> item in menu)
@@ -51,11 +50,13 @@ void Checkout()
 {
     Console.WriteLine("Thanks for your order!\n");
     Console.WriteLine("\nHere is your receipt:");
+    cartItems = cartItems.OrderBy(kvp => kvp.Value).ToList();//ec
     foreach (var x in cartItems)
     {
         Console.WriteLine(x);
         cartTotal += x.Value;
-
     }
     Console.WriteLine("Your total is: $" + cartTotal);
+    Console.WriteLine("Cheapest item was: " + cartItems.First());//ec
+    Console.WriteLine("Most expensive item was: " + cartItems.Last());//ec
 }
