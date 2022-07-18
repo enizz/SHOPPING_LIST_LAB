@@ -17,7 +17,7 @@ Console.WriteLine("Here is what we have on our menu:\n");
 do
 {
     DisplayMenu();
-    Console.WriteLine("\nEnter your order");
+    Console.WriteLine("\nEnter your order\n");
     input = Console.ReadLine();
     Order(input);
     Console.WriteLine("\nPress ENTER to add to your order or any other key to checkout");
@@ -32,7 +32,8 @@ void Order(string input2)
 {
     while (menu.ContainsKey(input) != true)
     {
-        Console.WriteLine("\nSorry, that item is not on our menu. Please try again.");
+        Console.WriteLine("\nSorry, that item is not on our menu. Please try again.\n");
+        DisplayMenu();
         input = Console.ReadLine();
     }
 
@@ -48,7 +49,7 @@ void DisplayMenu()
 }
 void Checkout()
 {
-    Console.WriteLine("Thanks for your order!\n");
+    Console.WriteLine("\nThanks for your order!\n");
     Console.WriteLine("\nHere is your receipt:");
     cartItems = cartItems.OrderBy(kvp => kvp.Value).ToList();//ec
     foreach (var x in cartItems)
